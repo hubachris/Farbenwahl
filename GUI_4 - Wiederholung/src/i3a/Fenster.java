@@ -15,6 +15,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
@@ -27,6 +30,7 @@ public class Fenster extends JFrame{
 	private JButton jbtRot, jbtGelb, jbtBlau;
 	private JRadioButton jradioRot, jradioGelb, jradioBlau;
 	private JComboBox<String> jcbFarben;
+	private JMenuItem jmiBeenden, jmiRot, jmiBlau, jmiGelb;
 
 
 	public Fenster() {
@@ -52,6 +56,28 @@ public class Fenster extends JFrame{
 	
 	private void initComponents(){
 		c = this.getContentPane();
+		
+//JMenü hinzufügen
+		JMenuBar jmbMenu = new JMenuBar();
+		JMenu jmDatei = new JMenu("Datei");
+		JMenu jmBearbeiten = new JMenu("Bearbeiten");
+		
+		jmiBeenden = new JMenuItem("Beenden");
+		jmiGelb = new JMenuItem("Gelb");
+		jmiRot = new JMenuItem("Rot");
+		jmiBlau = new JMenuItem("Blau");
+		
+		jmDatei.add(jmiBeenden);
+		jmBearbeiten.add(jmiBlau);
+		jmBearbeiten.add(jmiGelb);
+		jmBearbeiten.add(jmiRot);
+		
+		jmbMenu.add(jmDatei);
+		jmbMenu.add(jmBearbeiten);
+		
+		this.setJMenuBar(jmbMenu);
+		
+	//JMenu hinfügen beendet
 		
 		jradioRot = new JRadioButton("Rot");
 		jradioGelb = new JRadioButton("Gelb");
@@ -99,6 +125,11 @@ public class Fenster extends JFrame{
 		jradioBlau.addActionListener(mal);
 		
 		jcbFarben.addActionListener(mal);
+		
+		jmiBeenden.addActionListener(mal);
+		jmiRot.addActionListener(mal);
+		jmiGelb.addActionListener(mal);
+		jmiBlau.addActionListener(mal);
 	}
 	
 	private class MeinActionListener implements ActionListener{
@@ -112,6 +143,8 @@ public class Fenster extends JFrame{
 			if(ActionCommand == "comboBoxChanged"){
 				ActionCommand=(String)jcbFarben.getSelectedItem();
 			}
+			
+			System.out.println(ActionCommand);
 			
 			switch (ActionCommand) {
 			case "Rot":
@@ -128,6 +161,9 @@ public class Fenster extends JFrame{
 				jpCentre.setBackground(Color.BLUE);
 				jradioBlau.setSelected(true);
 				jcbFarben.setSelectedItem("Blau");
+				break;
+			case "Beenden":
+				//Soll beendet werden
 				break;
 			}
 		}
