@@ -57,27 +57,7 @@ public class Fenster extends JFrame{
 	private void initComponents(){
 		c = this.getContentPane();
 		
-//JMenü hinzufügen
-		JMenuBar jmbMenu = new JMenuBar();
-		JMenu jmDatei = new JMenu("Datei");
-		JMenu jmBearbeiten = new JMenu("Bearbeiten");
-		
-		jmiBeenden = new JMenuItem("Beenden");
-		jmiGelb = new JMenuItem("Gelb");
-		jmiRot = new JMenuItem("Rot");
-		jmiBlau = new JMenuItem("Blau");
-		
-		jmDatei.add(jmiBeenden);
-		jmBearbeiten.add(jmiBlau);
-		jmBearbeiten.add(jmiGelb);
-		jmBearbeiten.add(jmiRot);
-		
-		jmbMenu.add(jmDatei);
-		jmbMenu.add(jmBearbeiten);
-		
-		this.setJMenuBar(jmbMenu);
-		
-	//JMenu hinfügen beendet
+		menueHinzuefuegen();
 		
 		jradioRot = new JRadioButton("Rot");
 		jradioGelb = new JRadioButton("Gelb");
@@ -113,6 +93,30 @@ public class Fenster extends JFrame{
 		
 	}
 
+	private void menueHinzuefuegen() {
+		//JMenü hinzufügen
+				JMenuBar jmbMenu = new JMenuBar();
+				JMenu jmDatei = new JMenu("Datei");
+				JMenu jmBearbeiten = new JMenu("Bearbeiten");
+				
+				jmiBeenden = new JMenuItem("Beenden");
+				jmiGelb = new JMenuItem("Gelb");
+				jmiRot = new JMenuItem("Rot");
+				jmiBlau = new JMenuItem("Blau");
+				
+				jmDatei.add(jmiBeenden);
+				jmBearbeiten.add(jmiBlau);
+				jmBearbeiten.add(jmiGelb);
+				jmBearbeiten.add(jmiRot);
+				
+				jmbMenu.add(jmDatei);
+				jmbMenu.add(jmBearbeiten);
+				
+				this.setJMenuBar(jmbMenu);
+				
+			//JMenu hinfügen beendet
+	}
+
 	private void initEvents(){
 		MeinActionListener mal = new MeinActionListener();
 		
@@ -143,8 +147,6 @@ public class Fenster extends JFrame{
 			if(ActionCommand == "comboBoxChanged"){
 				ActionCommand=(String)jcbFarben.getSelectedItem();
 			}
-			
-			System.out.println(ActionCommand);
 			
 			switch (ActionCommand) {
 			case "Rot":
